@@ -1,4 +1,4 @@
-package it.vectorobjectmovement.core.arena;
+package it.vectorobjectmovement.gamecore.arena;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -8,7 +8,7 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.util.ArrayList;
 
-import it.vectorobjectmovement.gui.GamePanel;
+import it.vectorobjectmovement.gamegui.GamePanel;
 
 public class Arena {
 

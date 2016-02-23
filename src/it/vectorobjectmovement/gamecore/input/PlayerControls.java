@@ -1,4 +1,4 @@
-package it.vectorobjectmovement.core.input;
+package it.vectorobjectmovement.gamecore.input;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

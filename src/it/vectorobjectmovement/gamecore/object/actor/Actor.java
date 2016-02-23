@@ -1,7 +1,7 @@
-package it.vectorobjectmovement.core.object.actor;
+package it.vectorobjectmovement.gamecore.object.actor;
 
-import it.vectorobjectmovement.core.object.direction.Direction;
-import it.vectorobjectmovement.core.vector2d.Vector2D;
+import it.vectorobjectmovement.gamecore.object.direction.Direction;
+import it.vectorobjectmovement.gamecore.vector2d.Vector2D;
 
 public interface Actor {
 

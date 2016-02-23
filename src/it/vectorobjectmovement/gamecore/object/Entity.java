@@ -1,4 +1,4 @@
-package it.vectorobjectmovement.core.object;
+package it.vectorobjectmovement.gamecore.object;
 
 import java.awt.Graphics2D;
 import java.awt.Point;

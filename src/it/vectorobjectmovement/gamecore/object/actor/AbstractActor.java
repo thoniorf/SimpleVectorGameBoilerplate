@@ -1,24 +1,35 @@
-package it.vectorobjectmovement.core.object.actor;
+package it.vectorobjectmovement.gamecore.object.actor;
 
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import it.vectorobjectmovement.core.object.AbstractEntity;
-import it.vectorobjectmovement.core.object.direction.Direction;
-import it.vectorobjectmovement.core.vector2d.Vector2D;
+import it.vectorobjectmovement.gamecore.animation.Sprite;
+import it.vectorobjectmovement.gamecore.ia.AbstractIA;
+import it.vectorobjectmovement.gamecore.object.AbstractEntity;
+import it.vectorobjectmovement.gamecore.object.direction.Direction;
+import it.vectorobjectmovement.gamecore.vector2d.Vector2D;
 
 public abstract class AbstractActor extends AbstractEntity implements Actor {
 	protected static final int max_velocity = 4;
 	protected static final int charge_velocity = 8;
+
 	protected static final long charge_countdown = 5000;
+
+	public static int getMaxVelocity() {
+		return max_velocity;
+	}
+
 	protected Vector2D velocity;
 	protected Direction face_dir;
 	protected Direction move_dir;
 	protected Boolean can_charge;
 	protected Boolean charge;
 	protected long charge_time;
+	protected AbstractIA strategy;
+	// sprite images
+	protected Sprite head, body, mount;
 
-	public AbstractActor(Point origin) {
+	public AbstractActor(Point origin, int idHead, int idBody, int idMount) {
 		super(origin);
 		this.velocity = new Vector2D(0, 0);
 		this.move_dir = Direction.stop;
@@ -26,7 +37,9 @@ public abstract class AbstractActor extends AbstractEntity implements Actor {
 		this.can_charge = Boolean.TRUE;
 		this.charge_time = 0;
 		this.charge = Boolean.FALSE;
+		this.strategy = null;
 
+		// TODO sprite loader
 	}
 
 	public Boolean canCharge() {
@@ -96,6 +109,9 @@ public abstract class AbstractActor extends AbstractEntity implements Actor {
 	@Override
 	public void update() {
 		super.update();
+		if (strategy != null) {
+			strategy.update();
+		}
 		// Movement
 		switch (move_dir) {
 		case est:
@@ -111,8 +127,8 @@ public abstract class AbstractActor extends AbstractEntity implements Actor {
 			incVelY(1);
 			break;
 		default:
-			velocity.getComponents().x *= 0.99;
-			velocity.getComponents().y *= 0.99;
+			velocity.getComponents().x *= 0.99 * Math.random();
+			velocity.getComponents().y *= 0.99 * Math.random();
 			break;
 
 		}
@@ -153,5 +169,9 @@ public abstract class AbstractActor extends AbstractEntity implements Actor {
 		// set shape bounds
 		((Rectangle) shape).setBounds(origin.x - width / 2, origin.y - height / 2, width, height);
 
+		// sprite updates
+		head.update(face_dir);
+		body.update(face_dir);
+		mount.update(face_dir);
 	}
 }

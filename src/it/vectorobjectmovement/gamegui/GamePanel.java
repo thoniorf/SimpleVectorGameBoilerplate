@@ -1,4 +1,4 @@
-package it.vectorobjectmovement.gui;
+package it.vectorobjectmovement.gamegui;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -10,8 +10,8 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import it.vectorobjectmovement.core.GameWorld;
-import it.vectorobjectmovement.core.input.PlayerControls;
+import it.vectorobjectmovement.gamecore.GameWorld;
+import it.vectorobjectmovement.gamecore.input.PlayerControls;
 
 public class GamePanel extends JPanel {
 	private static final long serialVersionUID = 1L;

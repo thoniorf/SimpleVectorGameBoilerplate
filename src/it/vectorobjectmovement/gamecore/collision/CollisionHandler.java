@@ -1,35 +1,34 @@
-package it.vectorobjectmovement.core.collision;
+package it.vectorobjectmovement.gamecore.collision;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
-import it.vectorobjectmovement.core.GameWorld;
-import it.vectorobjectmovement.core.object.AbstractEntity;
-import it.vectorobjectmovement.core.object.Entity;
-import it.vectorobjectmovement.core.object.actor.AbstractActor;
-import it.vectorobjectmovement.core.vector2d.Vector2D;
+import it.vectorobjectmovement.gamecore.GameWorld;
+import it.vectorobjectmovement.gamecore.object.AbstractEntity;
+import it.vectorobjectmovement.gamecore.object.Entity;
+import it.vectorobjectmovement.gamecore.object.actor.AbstractActor;
+import it.vectorobjectmovement.gamecore.vector2d.Vector2D;
 
 public class CollisionHandler {
 
 	public static void check() {
 		// get world objects
-		ArrayList<Entity> objects = GameWorld.getWorld().getObjects();
+		ArrayList<Entity> objects = GameWorld.getObjects();
 		// temp entity
 		Entity first_entity;
 		Entity second_entity;
 		// check loop
 		for (int i = 0; i < objects.size(); i++) {
 			for (int j = i + 1; j < objects.size(); j++) {
-				if (!objects.get(i).getAlive() || !objects.get(j).getAlive()) {
-					break;
-				}
-				// refer current objects
-				first_entity = objects.get(i);
-				second_entity = objects.get(j);
-				// detect collision
-				if (detect(first_entity, second_entity)) {
-					// resolve
-					resolve((AbstractEntity) first_entity, (AbstractEntity) second_entity);
+				if (objects.get(i).getAlive() && objects.get(j).getAlive()) {
+					// refer current objects
+					first_entity = objects.get(i);
+					second_entity = objects.get(j);
+					// detect collision
+					if (detect(first_entity, second_entity)) {
+						// resolve
+						resolve((AbstractEntity) first_entity, (AbstractEntity) second_entity);
+					}
 				}
 
 			}
